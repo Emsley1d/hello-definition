@@ -7,15 +7,14 @@ const title = {
 const App = () => {
   return (
     <div>
+
       <h1 className="title">{title.name}</h1>
-      <ul>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-        <li>React</li>
-      </ul>
-      <label htmlFor="search">Search: </label>
-      <input className="search" type="text"></input>
+      <h3 className="links">PLACEHOLDER FOR LANGUAGE LINKS - HTML CSS JAVASCRIPT REACT</h3>
+      <span id="searchBar">
+      <label htmlFor="search">Search:</label>
+      <input type="text"></input><button>Submit</button>
+      </span>
+
       <ul>
         {searchableWords.map(function (item) {
           return (
@@ -33,6 +32,8 @@ const App = () => {
   );
 };
 
+
+// PSUEDO DATA
 const searchableWords = [
 
   {
@@ -55,6 +56,13 @@ const searchableWords = [
     definition:
       'Attributes can be added to the opening tag of an HTML element to change its default behavior or provide additional data about it. Attributes consist of a name and a value in the format name="value":',
     objectID: 2,
+  },
+  {
+    word: "Box Model",
+    language: "CSS",
+    definition:
+      'The Box Model is a CSS layout mechanism that the web browser uses to render content organized by box-shaped elements.',
+    objectID: 3,
   },
 ];
 
