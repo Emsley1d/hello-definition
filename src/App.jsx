@@ -37,12 +37,25 @@ const App = () => {
     },
   ];
 
-  const Search = () => (
-    <div id="searchBar">
-      <label htmlFor="search">Search:</label>
-      <input type="text"></input><button>Submit</button>
-    </div>
-  );
+  const Search = () => {
+    const [searchTerm, setSearchTerm] = React.useState('');
+
+    const handleChange = (event) => {
+      setSearchTerm(event.target.value);
+    };
+
+    return (
+      <div className="searchBar">
+        <label htmlFor="search">Search: </label>
+        <input id="search" type="text" onChange={handleChange}></input><button>Submit</button>
+  
+        <p>
+          Searching for... <strong>{searchTerm}</strong>
+        </p>
+  
+      </div>
+    );
+    };
 
   const Definitions = (props) => (
     <ul>
@@ -66,15 +79,18 @@ const App = () => {
       <div>
       <h1 className="title">{title.name}</h1>
       <h3 className="links">PLACEHOLDER FOR LANGUAGE LINKS - HTML CSS JAVASCRIPT REACT</h3>
+      <br />
+
 
       <Search />
 
       <br />
-      
+
         <Definitions definitions={searchableWords} />
       </div>
       );
 };
+
 
 
 export default App;
