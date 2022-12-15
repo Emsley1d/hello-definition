@@ -42,15 +42,38 @@ const App = () => {
     setSearchTerm(event.target.value);
   };
 
+  const searchedWordDefs = wordDefs.filter((wordDef) =>
+  wordDef.word.toLowerCase().includes(searchTerm.toLowerCase())
+  //! AND LANGUAGE 
+);
+
+return (
+  <div>
+    <h1 className="title">{title.name}</h1>
+    <h3 className="links">
+      PLACEHOLDER FOR LANGUAGE LINKS - HTML CSS JAVASCRIPT REACT
+    </h3>
+    <br />
+
+    <Search onSearch={handleSearch} />
+
+    <br />
+
+    <Definitions definitions={searchedWordDefs} />
+  </div>
+);
+
+};
+
   const Search = (props) => (
     <div className="searchBar">
       <label htmlFor="search">Search: </label>
       <input id="search" type="text" onChange={props.onSearch}></input>
       <button>Submit</button>
 
-      <p>
+      {/* <p>
         Searching for... <strong>{searchTerm}</strong>
-      </p>
+      </p> */}
     </div>
   );
 
@@ -72,27 +95,5 @@ const App = () => {
     </li>
   );
 
-  const searchedWordDefs = wordDefs.filter((wordDef) =>
-    wordDef.word.toLowerCase().includes(searchTerm.toLowerCase())
-    //! AND LANGUAGE 
-  );
-
-  return (
-    <div>
-      <h1 className="title">{title.name}</h1>
-      <h3 className="links">
-        PLACEHOLDER FOR LANGUAGE LINKS - HTML CSS JAVASCRIPT REACT
-      </h3>
-      <br />
-
-      <Search onSearch={handleSearch} />
-
-      <br />
-
-      <Definitions definitions={wordDefs} />
-    </div>
-  );
-
-};
 
 export default App;
