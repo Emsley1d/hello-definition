@@ -5,8 +5,7 @@ const title = {
 };
 
 const App = () => {
-
-  const searchableWords = [
+  const wordDefs = [
     {
       word: "Array",
       language: "JavaScript",
@@ -32,34 +31,32 @@ const App = () => {
       word: "Box Model",
       language: "CSS",
       definition:
-        'The Box Model is a CSS layout mechanism that the web browser uses to render content organized by box-shaped elements.',
+        "The Box Model is a CSS layout mechanism that the web browser uses to render content organized by box-shaped elements.",
       objectID: 3,
     },
   ];
 
-  const Search = () => {
-    const [searchTerm, setSearchTerm] = React.useState('');
+  const [searchTerm, setSearchTerm] = React.useState('');
 
-    const handleChange = (event) => {
-      setSearchTerm(event.target.value);
-    };
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
-    return (
-      <div className="searchBar">
-        <label htmlFor="search">Search: </label>
-        <input id="search" type="text" onChange={handleChange}></input><button>Submit</button>
-  
-        <p>
-          Searching for... <strong>{searchTerm}</strong>
-        </p>
-  
-      </div>
-    );
-    };
+  const Search = (props) => (
+    <div className="searchBar">
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" onChange={props.onSearch}></input>
+      <button>Submit</button>
+
+      <p>
+        Searching for... <strong>{searchTerm}</strong>
+      </p>
+    </div>
+  );
 
   const Definitions = (props) => (
     <ul>
-    {props.definitions.map((item) => (
+      {props.definitions.map((item) => (
         <Item key={item.objectID} item={item} />
       ))}
     </ul>
@@ -75,22 +72,27 @@ const App = () => {
     </li>
   );
 
-    return (
-      <div>
+  const searchedWordDefs = wordDefs.filter((wordDef) =>
+    wordDef.word.toLowerCase().includes(searchTerm.toLowerCase())
+    //! AND LANGUAGE 
+  );
+
+  return (
+    <div>
       <h1 className="title">{title.name}</h1>
-      <h3 className="links">PLACEHOLDER FOR LANGUAGE LINKS - HTML CSS JAVASCRIPT REACT</h3>
+      <h3 className="links">
+        PLACEHOLDER FOR LANGUAGE LINKS - HTML CSS JAVASCRIPT REACT
+      </h3>
       <br />
 
-
-      <Search />
+      <Search onSearch={handleSearch} />
 
       <br />
 
-        <Definitions definitions={searchableWords} />
-      </div>
-      );
+      <Definitions definitions={wordDefs} />
+    </div>
+  );
+
 };
-
-
 
 export default App;
